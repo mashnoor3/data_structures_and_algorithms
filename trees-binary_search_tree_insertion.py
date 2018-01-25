@@ -13,7 +13,9 @@ self.data (the value of the node)"""
 
 
 def insert(root,val):
-    if root:
+    if not root:
+        root = Node(val)
+    else:
         if val > root.data:
             if root.right:
                 insert(root.right, val)
@@ -25,4 +27,4 @@ def insert(root,val):
             else:
                 root.left = Node(val)
 
-        return root
+    return root
