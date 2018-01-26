@@ -21,13 +21,19 @@ def hammingDistance(x, y):
         y_bin = dec_to_bin(y)
 
         if len(x_bin) > len(y_bin):
-            max_length = len(x_bin) - 1
+            # max_length = len(x_bin) - 1
+            while not (len(y_bin) == len(x_bin)):
+                y_bin.insert(0,0)
         else:
             max_length = len(y_bin) - 1
+            while not (len(y_bin) == len(x_bin)):
+                x_bin.insert(0,0)
 
+        print (x_bin)
+        print (y_bin)
         hd = 0
 
-        for i in range(max_length):
+        for i in range(len(x_bin) - 1):
             if not (x_bin[i] == y_bin[i]):
                 hd += 1
 
@@ -51,3 +57,36 @@ def dec_to_bin(dec):
     return binary
 
 hammingDistance(7,8)
+
+
+'''
+class Solution:
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        x_bin = dec_to_bin(x)
+        y_bin = dec_to_bin(y)
+
+        if len(x_bin) > len(y_bin):
+            # max_length = len(x_bin) - 1
+            while not (len(y_bin) == len(x_bin)):
+                y_bin.insert(0,0)
+        else:
+            max_length = len(y_bin) - 1
+            while not (len(y_bin) == len(x_bin)):
+                x_bin.insert(0,0)
+
+        print (x_bin)
+        print (y_bin)
+        hd = 0
+
+        for i in range(len(x_bin)):
+            if not (x_bin[i] == y_bin[i]):
+                hd += 1
+
+        print (hd)
+        return hd
+'''
