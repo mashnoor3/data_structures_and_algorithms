@@ -15,51 +15,6 @@ Time complexity:    O(n)
 Space complexity:   O(n)
 '''
 
-def hammingDistance(x, y):
-
-        x_bin = dec_to_bin(x)
-        y_bin = dec_to_bin(y)
-
-        if len(x_bin) > len(y_bin):
-            # max_length = len(x_bin) - 1
-            while not (len(y_bin) == len(x_bin)):
-                y_bin.insert(0,0)
-        else:
-            max_length = len(y_bin) - 1
-            while not (len(y_bin) == len(x_bin)):
-                x_bin.insert(0,0)
-
-        print (x_bin)
-        print (y_bin)
-        hd = 0
-
-        for i in range(len(x_bin) - 1):
-            if not (x_bin[i] == y_bin[i]):
-                hd += 1
-
-        print (hd)
-        return hd
-
-def dec_to_bin(dec):
-    quotient = dec
-    # Binary represented as a ___
-    binary = []
-
-    while not (quotient == 0):
-        quotient = dec // 2
-        remainder = dec % 2
-
-        binary.insert(0,remainder)
-
-        dec = quotient
-
-    # print(binary)
-    return binary
-
-hammingDistance(7,8)
-
-
-'''
 class Solution:
     def hammingDistance(self, x, y):
         """
@@ -67,26 +22,37 @@ class Solution:
         :type y: int
         :rtype: int
         """
-        x_bin = dec_to_bin(x)
-        y_bin = dec_to_bin(y)
+        x_bin = self.dec_to_bin(x)
+        y_bin = self.dec_to_bin(y)
 
+        # Need to normalize the binary representations to ensure they have the
+        # same number of bits
         if len(x_bin) > len(y_bin):
-            # max_length = len(x_bin) - 1
             while not (len(y_bin) == len(x_bin)):
                 y_bin.insert(0,0)
         else:
-            max_length = len(y_bin) - 1
             while not (len(y_bin) == len(x_bin)):
                 x_bin.insert(0,0)
 
-        print (x_bin)
-        print (y_bin)
         hd = 0
-
         for i in range(len(x_bin)):
             if not (x_bin[i] == y_bin[i]):
                 hd += 1
 
-        print (hd)
         return hd
-'''
+
+    def dec_to_bin(self, dec):
+        quotient = dec
+        # Binary number will be represented as a queue
+        binary = []
+
+        # Convert from dec to bin. Use integer division, and modulo by 2.
+        while not (quotient == 0):
+            quotient = dec // 2
+            remainder = dec % 2
+
+            binary.insert(0,remainder)
+
+            dec = quotient
+
+        return binary
