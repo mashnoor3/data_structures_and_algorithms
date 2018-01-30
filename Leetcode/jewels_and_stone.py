@@ -14,10 +14,11 @@ letters. Letters are case sensitive, so "a" is considered a different type of
 stone from "A".
 
 Solution:
-Idea:
+Idea:               Hash table for jewels, then iterate through stones, compare,
+                    and increment counters.
 
-Time complexity:    O(n) (need to go through all nodes)
-Space complexity:   O(logn) for average case, and O(n) for worst case (skewed tree)
+Time complexity:    O(n) (n is the # of stones)
+Space complexity:   O(m) (m is the # of jewels. HT for # jewels)
 '''
 
 import collections
