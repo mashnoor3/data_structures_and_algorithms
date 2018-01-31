@@ -20,7 +20,7 @@ Idea:
 Iterate through each number in the range, and call helper function to see if that
 number is self diving. If so, then append to output list.
 
-Time complexity: O(n^2)
+Time complexity: O(n)
 Space complexity: O(n)
 '''
 
