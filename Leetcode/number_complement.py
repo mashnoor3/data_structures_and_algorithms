@@ -17,11 +17,33 @@ Convert the integer to binary, this will be a stack.
 XOR every bit (digit) oin the binary number (stack).
 Convert from binary back to decimal.
 
-Time complexity: O(n)
-Space complexity: O(n)
+Time complexity: O(log(n))
+Space complexity: O(1)
 '''
 
+
+# Solution using Python's bitwise operators
 class Solution:
+
+    def findComplement(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        i = 1
+        # Only need to create binary number to XOR is it's 2 or more bits
+        if num > 1:
+            # Create a binary number that is the same number of bits as num
+            while i <= num:
+                i = i << 1
+            # Subtract 1 to make binary number all ones
+            i = i - 1
+
+        # XOR i with num to flip the bits for num
+        return num ^ i
+
+# Alternative solution without using Python's bitwise operators
+class Solution2:
 
     def bin_to_dec(self, bin_list):
         num = 0
