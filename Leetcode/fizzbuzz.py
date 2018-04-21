@@ -1,15 +1,5 @@
 # Problem:  412. Fizz Buzz
 
-# class Solution:
-#     def fizzBuzz(self, n):
-#         """
-#         :type n: int
-#         :rtype: List[str]
-#         """
-#         answer = []
-#         for i in range(n):
-
-
 def fizzBuzz(n):
     output = []
     i = 1
@@ -25,4 +15,5 @@ def fizzBuzz(n):
         i+=1
     return output
 
+# Test cases
 fizzBuzz(15)
