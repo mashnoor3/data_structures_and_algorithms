@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 def twoSum(nums, target):
-    dict, out = defaultdict(int), []
+    dict = defaultdict(int)
 
     for i, num in enumerate(nums):
         dict[num] = i
@@ -10,6 +10,4 @@ def twoSum(nums, target):
         second = target-num
         # Second check is to ensure that same element is not used twice
         if second in dict and dict[second] != i:
-            out.append(i)
-            out.append(dict[second])
-            return out
+            return [i, dict[second]]
