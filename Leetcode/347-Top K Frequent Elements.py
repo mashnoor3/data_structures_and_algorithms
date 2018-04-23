@@ -1,14 +1,20 @@
 from collections import defaultdict
+from heapq import heappush, heappop, nlargest
 
 def topKFrequent(nums, k):
-    dict = defaultdict(int)
-    for i in nums:
-        dict[i] += 1
+    hashTable, heap = defaultdict(int), []
 
-    out = []
-    for key in dict.keys():
-        if dict[key] >= k:
-            out.append(key)
-    return out
+    for num in nums:
+        hashTable[num] += 1
 
-print(topKFrequent([1,1,1,2,2,3],2))
+    # O(n*log(n)) time complexity to create heap
+    for ele in hashTable.keys():
+        # Create heap where the keys are the values from hashtable
+        heappush(heap, (hashTable[ele], ele))
+
+    # Tuple unpacking to separate key and value of heap nodes
+    occurrence, ele = zip(*nlargest(k, heap))
+
+    return list(ele)
+
+print(topKFrequent([1,1,1,2,2,4],2))
