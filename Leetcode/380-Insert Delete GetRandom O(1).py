@@ -1,45 +1,45 @@
 from collections import defaultdict
 import random
 
-class RandomizedSet:
+# Use a dictionary for O(1) insert and remove, and List for O(1) getRandom
+# Dict. Key is the item, and value is position in list
+# For list pop of end is O(1), and then copy over also O(1)
 
+class RandomizedSet:
     def __init__(self):
         self.myList, self.myDict = [], defaultdict(int)
 
-
     def insert(self, val):
-        """
-        Inserts a value to the set. Returns true if the set did not already contain the specified element.
-        :type val: int
-        :rtype: bool
-        """
         if val in self.myDict:
             return False
-        else:
-            myDict[val] += 1
-            myList.append(val)
-            return True
-
+        self.myList.append(val)
+        pos = len(self.myList)-1
+        self.myDict[val] = pos
+        return True
 
     def remove(self, val):
-        """
-        Removes a value from the set. Returns true if the set contained the specified element.
-        :type val: int
-        :rtype: bool
-        """
-        if val in self.myDict:
-            del myDict[val]
-            return True
-        else:
+        if val not in self.myDict:
             return False
-
+        if len(self.myList) == 1:
+            del self.myDict[val]
+            self.myList.pop()
+        else:
+            pos = self.myDict[val]
+            del self.myDict[val]
+            tmp = self.myList.pop()
+            # If removed item from middle of list,
+            # then need to swap the popped element into correct index
+            if tmp != val:
+                self.myList[pos] = tmp
+                self.myDict[tmp] = pos
+        return True
 
     def getRandom(self):
-        """
-        Get a random element from the set.
-        :rtype: int
-        """
-        if len(self.myDict) == 0:
+        if len(self.myList) == 0:
             return False
+        i = random.randint(0,len(self.myList)-1)
+        return self.myList[i]
 
-        return random.choice(list(self.myDict.keys()))
+    def printBoth (self):
+        print (self.myList)
+        print (self.myDict)
